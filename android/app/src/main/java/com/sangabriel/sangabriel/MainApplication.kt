@@ -1,4 +1,4 @@
-package com.sangabriel
+package com.sangabriel.sangabriel
 
 import android.app.Application
 import com.facebook.react.PackageList

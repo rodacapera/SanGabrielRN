@@ -1,4 +1,4 @@
-package com.sangabriel
+package com.sangabriel.sangabriel
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
