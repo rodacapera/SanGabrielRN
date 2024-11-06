@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "826937155736",
+    "project_id": "sangabriel-a4ba5",
+    "storage_bucket": "sangabriel-a4ba5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826937155736:android:8673937db2d09bd70070ed",
+        "android_client_info": {
+          "package_name": "com.sangabriel.sangabriel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "826937155736-ak591fmde8p646hnc91kfovushqkl3lj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9UuNtWzJhB_2t1rgpTTevd9W4SsmhtRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "826937155736-ak591fmde8p646hnc91kfovushqkl3lj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

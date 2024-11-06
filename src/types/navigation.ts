@@ -7,6 +7,7 @@ export type RouteStackParamList = {
   Home: undefined;
   PasswordOne: undefined;
   Terms: {type: number};
+  Policy: {type: number};
 };
 
 export type StackNavigation = StackNavigationProp<RouteStackParamList>;
