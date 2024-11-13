@@ -27,10 +27,6 @@ const LoginHook = ({}: {}) => {
     navigation.navigate('PasswordOne');
   };
 
-  useEffect(() => {
-    getVersion();
-  }, []);
-
   const handleInputChange = (text: any, name: any) => {
     if (name === 'username') {
       setName(text);
@@ -184,10 +180,10 @@ const LoginHook = ({}: {}) => {
 
   const getVersion = async () => {
     try {
-      let data: ApiData = {
+      const data: ApiData = {
         method: 'GET'
       };
-      let response = await asyncSendApis('/api-general/api_version', data);
+      const response = await asyncSendApis('/api-general/api_version', data);
       if (response.status) {
         if (ConfigConstants.versionCode === response.version) {
           getUserLogged();
@@ -197,7 +193,7 @@ const LoginHook = ({}: {}) => {
       } else {
         console.log('CATCH VERSION ==> ', response);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log('Error VERSION ==> ', error);
     }
   };
@@ -218,7 +214,12 @@ const LoginHook = ({}: {}) => {
     setAccept_tyc(false);
   };
 
+  useEffect(() => {
+    getVersion();
+  }, []);
+
   return {
+    navigation,
     verifyVersion,
     setVerifyVersion,
     verifyLocation,

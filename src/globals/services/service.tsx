@@ -19,15 +19,15 @@ interface ApiResponse {
 // Función asíncrona para enviar solicitudes API
 export const asyncSendApis = async (
   url: string,
-  data: ApiData,
+  data: ApiData
 ): Promise<ApiResponse> => {
   // Define el método HTTP, usa 'GET' por defecto si no se proporciona
-  const method = data.method || 'GET';
+  const method = data.method ?? 'GET';
 
   // Configura los headers por defecto
   let headers: Record<string, string> = {
     Accept: 'application/json',
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   };
 
   // Si se proporciona un token, lo añade a los headers
@@ -45,7 +45,7 @@ export const asyncSendApis = async (
     method: method,
     url: ConfigConstants.webServiceName + url, // Combina la URL base con la URL específica de la solicitud
     headers: headers, // Añade los headers configurados
-    withCredentials: false, // Configura el envío de credenciales si se especifica
+    withCredentials: false // Configura el envío de credenciales si se especifica
   };
 
   // Si se proporciona un cuerpo para la solicitud
@@ -61,6 +61,8 @@ export const asyncSendApis = async (
       config.data = data.body; // Asigna directamente el cuerpo si no es un formulario
     }
   }
+
+  console.log('config', config);
 
   // Envía la solicitud utilizando Axios y espera la respuesta
   const response: AxiosResponse = await axios(config);

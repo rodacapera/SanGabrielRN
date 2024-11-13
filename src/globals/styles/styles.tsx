@@ -72,6 +72,17 @@ const sG = EStyleSheet.create({
     elevation: 5
   },
 
+  card_shadow_bottom: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8 // Aumenta este valor para empujar la sombra más hacia abajo y evitar la parte superior
+    },
+    shadowOpacity: 0.15, // Ajusta la opacidad según lo necesites
+    shadowRadius: 4.84, // Ajusta el radio para suavizar o endurecer la sombra
+    elevation: 3 // Aumenta este valor si deseas una sombra más pronunciada en Android
+  },
+
   text_primary: {color: '$colorPrimary'},
   text_secondary: {color: '$colorSecondary'},
   text_gray_light: {color: '$colorGrayLight'},
@@ -103,6 +114,22 @@ const sG = EStyleSheet.create({
   bc_gray_light: {borderColor: '$colorGrayLight', borderWidth: 0.5},
   bc_white: {borderColor: '#ffffff', borderWidth: 0.5},
 
+  top_0: {
+    top: 0
+  },
+  top_5: {
+    top: '5%'
+  },
+  top_10: {
+    top: '10%'
+  },
+  top_15: {
+    top: '15%'
+  },
+  top_20: {
+    top: '20%'
+  },
+
   text_top: {
     textAlignVertical: 'top'
   },
@@ -132,6 +159,15 @@ const sG = EStyleSheet.create({
   jc_center: {
     justifyContent: 'center'
   },
+  jc_between: {
+    justifyContent: 'space-between'
+  },
+  jc_around: {
+    justifyContent: 'space-around'
+  },
+  jc_evenly: {
+    justifyContent: 'space-evenly'
+  },
   jc_end: {
     justifyContent: 'flex-end'
   },
@@ -151,13 +187,13 @@ const sG = EStyleSheet.create({
     overflow: 'hidden'
   },
   broundedmax: {
-    borderRadius: '30rem',
-    overflow: 'hidden'
+    borderRadius: '30rem'
+    // overflow: 'hidden'
   },
   brounded_bottom: {
     borderBottomLeftRadius: '15rem',
-    borderBottomRightRadius: '15rem',
-    overflow: 'hidden'
+    borderBottomRightRadius: '15rem'
+    // overflow: 'hidden'
   },
   brounded_top: {
     borderTopLeftRadius: '15rem',
@@ -224,6 +260,9 @@ const sG = EStyleSheet.create({
   },
   h_100: {
     height: '100%'
+  },
+  h_screen: {
+    height: '100vh'
   },
 
   h_80_rem: {height: '5rem'},
@@ -296,6 +335,7 @@ const sG = EStyleSheet.create({
 
   icon_xs: {height: '25rem', width: '25rem'},
   icon_md: {height: '50rem', width: '50rem'},
+  icon_lg: {height: '70rem', width: '70rem'},
   icon_xl: {height: '100rem', width: '100rem'},
   size_icon: {fontSize: '15rem'},
   size_icon_xs: {fontSize: '10rem'},
@@ -379,6 +419,7 @@ const sG = EStyleSheet.create({
   p_t_md: {paddingTop: '20rem'},
   p_t_lg: {paddingTop: '30rem'},
   p_t_xl: {paddingTop: '50rem'},
+  p_t_xxl: {paddingTop: '80rem'},
 
   p_r_xs: {paddingRight: '12.5rem'},
   p_r_sm: {paddingRight: '15rem'},
@@ -422,6 +463,7 @@ const sG = EStyleSheet.create({
   m_t_md: {marginTop: '20rem'},
   m_t_lg: {marginTop: '30rem'},
   m_t_xl: {marginTop: '50rem'},
+  m_t_xxl: {marginTop: '80rem'},
 
   m_r_xs: {marginRight: '12.5rem'},
   m_r_sm: {marginRight: '15rem'},

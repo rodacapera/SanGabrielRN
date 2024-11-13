@@ -33,13 +33,13 @@ const Home = ({}) => {
   };
 
   const handlePressSettings = () => {
-    //navigation.navigate('About');
+    navigation.navigate('About');
   };
 
   const getUserData = useCallback(async () => {
     try {
       const data: ApiData = {
-        token: await AsyncStorage.getItem('Token'),
+        token: await AsyncStorage.getItem('Token')
       };
       const response = await asyncSendApis('/apis/userConductor/', data);
       if (response.status) {
@@ -66,7 +66,7 @@ const Home = ({}) => {
     try {
       let data: ApiData = {
         token: await AsyncStorage.getItem('Token'),
-        method: 'POST',
+        method: 'POST'
       };
       const response = await asyncSendApis('/rest-auth/logout/', data);
       if (response.status) {
@@ -102,7 +102,7 @@ const Home = ({}) => {
     } else {
       Alert.alert(
         'Señor usuario',
-        'Debes finalizar tus servicios en curso para poder cerrar sesión.',
+        'Debes finalizar tus servicios en curso para poder cerrar sesión.'
       );
     }
   };
@@ -138,7 +138,7 @@ const Home = ({}) => {
     handlePressSettings,
     handlePressTycPp,
     handlePressNoveltyes,
-    handlePressHistorial,
+    handlePressHistorial
   };
 };
 

@@ -7,7 +7,7 @@ const SplashHook = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('Login');
+      navigation.replace('Home');
     }, 1500);
     return () => clearTimeout(timer);
   }, [navigation]);

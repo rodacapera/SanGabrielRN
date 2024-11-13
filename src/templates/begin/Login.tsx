@@ -19,6 +19,7 @@ import {location_gif, logo_color_app, main_icon} from '@src/assets/images';
 
 const Login = () => {
   const {
+    navigation,
     verifyVersion,
     setVerifyVersion,
     verifyLocation,
@@ -176,7 +177,8 @@ const Login = () => {
                     sG.jc_center,
                     sG.bg_primary
                   ]}
-                  onPress={handlePressLogin}>
+                  // onPress={handlePressLogin}
+                  onPress={() => navigation.navigate('Home')}>
                   <Text style={[sG.h7, sG.bold, sG.text_white]}>Ingresar</Text>
                 </TouchableOpacity>
               )}
@@ -287,7 +289,7 @@ const Login = () => {
                     ]}>
                     Tu aplicación no está actualizada
                   </Text>
-                  <TouchableOpacity /* onPress={() => AppInGoogle(1)} */>
+                  <TouchableOpacity onPress={() => AppInGoogle(1)}>
                     <Text
                       style={[
                         sG.text_primary,

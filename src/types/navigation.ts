@@ -1,5 +1,6 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {StackNavigationProp} from '@react-navigation/stack';
+import About from '@src/templates/settings/About';
 
 export type RouteStackParamList = {
   Splash: undefined;
@@ -8,6 +9,7 @@ export type RouteStackParamList = {
   PasswordOne: undefined;
   Terms: {type: number};
   Policy: {type: number};
+  About: undefined;
 };
 
 export type StackNavigation = StackNavigationProp<RouteStackParamList>;
@@ -28,4 +30,8 @@ export type PasswordOneNavigation = NativeStackScreenProps<
 export type TermsOneNavigation = NativeStackScreenProps<
   RouteStackParamList,
   'Terms'
+>;
+export type AboutNavigation = NativeStackScreenProps<
+  RouteStackParamList,
+  'About'
 >;
