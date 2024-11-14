@@ -177,8 +177,7 @@ const Login = () => {
                     sG.jc_center,
                     sG.bg_primary
                   ]}
-                  // onPress={handlePressLogin}
-                  onPress={() => navigation.navigate('Home')}>
+                  onPress={handlePressLogin}>
                   <Text style={[sG.h7, sG.bold, sG.text_white]}>Ingresar</Text>
                 </TouchableOpacity>
               )}

@@ -90,7 +90,7 @@ const Home = ({}) => {
 
   const clearLogout = async () => {
     const cantidadCursoString = await AsyncStorage.getItem('CantidadCurso');
-    const cantidadCurso = cantidadCursoString
+    const cantidadCurso = cantidadCursoString // esta validacion debe estar antes de entrar aqui
       ? parseInt(cantidadCursoString, 10)
       : 0;
     if (cantidadCurso === 0) {

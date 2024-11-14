@@ -6735,6 +6735,11 @@ react-native-btr@^2.2.1:
     react-native-radio-buttons-group "^3.0.5"
     react-native-vector-icons "^10.0.3"
 
+react-native-device-info@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-14.0.0.tgz#371601bb07f738aba721c74ad9c58b815d16f2b7"
+  integrity sha512-hKgH5URRQyMvr1wcBF8pZ9EnSM6fLGAfYRGZaOM8ljkr841kV5bjteI/p9ORfulxgZjB/vfz2J8zMAYwPOQWJg==
+
 react-native-extended-stylesheet@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/react-native-extended-stylesheet/-/react-native-extended-stylesheet-0.12.0.tgz#ebacf22d78a8e2173bdef2a08cbf1acba4dc051f"

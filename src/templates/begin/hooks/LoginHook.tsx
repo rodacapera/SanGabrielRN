@@ -6,10 +6,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ApiData} from '../../../types/api';
 import axios from 'axios';
 import {asyncSendApis} from '../../../globals/services/service';
-import {ConfigConstants} from 'src/globals/config/config';
+import DeviceInfo from 'react-native-device-info';
 
 const LoginHook = ({}: {}) => {
   const navigation = useNavigation<StackNavigation>();
+  const currentVersion = DeviceInfo.getVersion();
   const [verifyVersion, setVerifyVersion] = useState(false);
   const [verifyLocation, setVerifyLocation] = useState(true);
   const [permissionAccepted, setPermissionAccepted] = useState(false);
@@ -59,66 +60,66 @@ const LoginHook = ({}: {}) => {
   //-------------------- inicio sección de apis --------------------
   const handlePressLogin = async () => {
     if (accept_tyc) {
-      setTimeout(async () => {
-        if (!permissionAccepted) {
-          setVerifyLocation(true);
+      if (!permissionAccepted) {
+        setVerifyLocation(true);
+      } else {
+        setIsLoading(true);
+        //evaluo si tiene los campos en blanco antes de consumir el API
+        if (username === '' && password === '') {
+          setTextErrorUsername('* Correo electrónico obligatorio');
+          setTextErrorPassword('* Contraseña obligatoria');
+          setIsLoading(false);
+        } else if (username === '' && password != '') {
+          setTextErrorUsername('* Correo electrónico obligatorio');
+          setTextErrorPassword('');
+          setIsLoading(false);
+        } else if (password === '' && username != '') {
+          setTextErrorUsername('');
+          setTextErrorPassword('* Contraseña obligatoria');
+          setIsLoading(false);
         } else {
-          setIsLoading(true);
-          //evaluo si tiene los campos en blanco antes de consumir el API
-          if (username === '' && password === '') {
-            setTextErrorUsername('* Correo electrónico obligatorio');
-            setTextErrorPassword('* Contraseña obligatoria');
-            setIsLoading(false);
-          } else if (username === '' && password != '') {
-            setTextErrorUsername('* Correo electrónico obligatorio');
-            setTextErrorPassword('');
-            setIsLoading(false);
-          } else if (password === '' && username != '') {
-            setTextErrorUsername('');
-            setTextErrorPassword('* Contraseña obligatoria');
-            setIsLoading(false);
-          } else {
-            try {
-              let data: ApiData = {
-                //credentials: 'omit',
-                method: 'POST',
-                body: JSON.stringify({
-                  username: username,
-                  password: password
-                })
-              };
-              let response = await asyncSendApis('/custom/login/', data);
-              if (response.status) {
-                tokenValidate(response.key);
-                api_put_id_device(response.key);
-              } else {
-                setTextErrorUsername('* Verifica tu correo electrónico');
-                setTextErrorPassword('* Verifica tu contraseña');
-                setIsLoading(false);
-              }
-            } catch (error: any) {
-              console.log('Error ====> ', error);
-              setTextError('Error en el proceso de acceso a tu cuenta.');
-              setShow(true);
-              setIsLoading(false);
+          try {
+            let data: ApiData = {
+              //credentials: 'omit',
+              method: 'POST',
+              body: JSON.stringify({
+                username: username,
+                password: password
+              })
+            };
+            console.log('data', data);
+            let response = await asyncSendApis('/rest-auth/login/', data);
+            console.log('response handlePressLogin', response.status);
 
-              if (axios.isAxiosError(error) && error.response) {
-                console.error('Error during API call:', error.response.data);
-                return {
-                  status: false,
-                  error: error.response.data || 'Request failed'
-                };
-              } else {
-                console.error('Error during API call:', error.message);
-                return {
-                  status: false,
-                  error: error.message || 'Request failed'
-                };
-              }
+            if (response.status) {
+              tokenValidate(response.key);
+              api_put_id_device(response.key);
+            } else {
+              setTextErrorUsername('* Verifica tu correo electrónico');
+              setTextErrorPassword('* Verifica tu contraseña');
+              setIsLoading(false);
+            }
+          } catch (error: any) {
+            console.log('Error ====> ', error);
+            setTextError('Error en el proceso de acceso a tu cuenta.');
+            setShow(true);
+            setIsLoading(false);
+            if (axios.isAxiosError(error) && error.response) {
+              console.error('Error during API call:', error.response.data);
+              return {
+                status: false,
+                error: error.response.data || 'Request failed'
+              };
+            } else {
+              console.error('Error during API call:', error.message);
+              return {
+                status: false,
+                error: error.message || 'Request failed'
+              };
             }
           }
         }
-      }, 1000);
+      }
     } else {
       Alert.alert(
         'Debes aceptar los términos y condiciones y la política de privacidad'
@@ -127,6 +128,7 @@ const LoginHook = ({}: {}) => {
   };
 
   const api_put_id_device = async (tok: any) => {
+    const tokenStorage = await AsyncStorage.getItem('@fcmToken');
     try {
       let operating_system = 0;
       if (Platform.OS === 'ios') {
@@ -138,7 +140,7 @@ const LoginHook = ({}: {}) => {
         token: tok,
         method: 'POST',
         body: JSON.stringify({
-          push_token: 'ExponentPushToken[aM-8N6Jo5jrnJmWGAXRuba]',
+          push_token: tokenStorage,
           operating_system: operating_system
         })
       };
@@ -146,6 +148,8 @@ const LoginHook = ({}: {}) => {
         '/usuarios/actualizarDispositivos',
         data
       );
+      console.log('response api_put_id_device', response.status);
+
       if (response.status) {
         setIsLoading(false);
         navigation.navigate('Home');
@@ -185,10 +189,10 @@ const LoginHook = ({}: {}) => {
       };
       const response = await asyncSendApis('/api-general/api_version', data);
       if (response.status) {
-        if (ConfigConstants.versionCode === response.version) {
-          getUserLogged();
-        } else {
+        if (currentVersion != response.version) {
           setVerifyVersion(true);
+        } else {
+          getUserLogged();
         }
       } else {
         console.log('CATCH VERSION ==> ', response);
@@ -203,7 +207,7 @@ const LoginHook = ({}: {}) => {
     let token = await AsyncStorage.getItem('Token');
     if (token != null) {
       setIsLoading(false);
-      navigation.navigate('Home');
+      // navigation.navigate('Home');
     } else {
       setIsLoading(false);
     }

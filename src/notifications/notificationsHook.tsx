@@ -20,9 +20,9 @@ export const pushConfigure = () => {
         aps: {
           alert: {
             body: currentData.aps.alert.body,
-            title: currentData.aps.alert.title,
-          },
-        },
+            title: currentData.aps.alert.title
+          }
+        }
       };
       if (Platform.OS == 'ios') {
         // const notificationData:ValidateNotificationsData = {aps:{alert: {body: notification.data.aps.alert} }}
@@ -31,7 +31,7 @@ export const pushConfigure = () => {
           type: currentData.type,
           id_action: currentData.id_action,
           id_pet: currentData.id_pet,
-          data: currentDataData,
+          data: currentDataData
         };
         // process the notification
         // PushNotificationsActions(data);
@@ -57,7 +57,7 @@ export const pushConfigure = () => {
     permissions: {
       alert: true,
       badge: true,
-      sound: true,
+      sound: true
     },
 
     // Should the initial notification be popped automatically
@@ -71,7 +71,7 @@ export const pushConfigure = () => {
      * - if you are not using remote notification or do not have Firebase installed, use this:
      *     requestPermissions: Platform.OS === 'ios'
      */
-    requestPermissions: true,
+    requestPermissions: true
   });
 
   // PushNotification.popInitialNotification(notification => {
@@ -80,29 +80,27 @@ export const pushConfigure = () => {
 };
 
 export const remoteMessageAction = (
-  remoteMessage: FirebaseMessagingTypes.RemoteMessage,
+  remoteMessage: FirebaseMessagingTypes.RemoteMessage
 ) => {
   if (
     Platform.OS == 'android' &&
     remoteMessage.notification &&
     remoteMessage.data
   ) {
-    console.log('remoteMessage????>?>?>?>?>?>?>', remoteMessage);
-
     const currentData = {
       aps: {
         alert: {
           body: remoteMessage.notification?.body,
-          title: remoteMessage.notification?.title,
-        },
-      },
+          title: remoteMessage.notification?.title
+        }
+      }
     };
     const data = {
       id_user: remoteMessage.data?.uuid as string,
       type: remoteMessage.data?.type as string,
       id_action: remoteMessage.data?.id_action as string,
       id_pet: remoteMessage.data?.id_pet as string,
-      data: currentData,
+      data: currentData
     };
     // process the notification
     // PushNotificationsActions(data);
@@ -111,13 +109,13 @@ export const remoteMessageAction = (
 
 export const localNotificationHandle = ({
   title,
-  message,
+  message
 }: {
   title: string;
   message: string;
 }) => {
   PushNotification.localNotification({
     message,
-    title,
+    title
   });
 };
