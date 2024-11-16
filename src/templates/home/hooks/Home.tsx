@@ -22,10 +22,11 @@ const Home = ({}) => {
 
   const handlePressServices = async () => {
     await AsyncStorage.setItem('dateCalendar', 'undefined');
+    navigation.navigate('Services');
   };
 
   const handlePressHistorial = () => {
-    //navigation.navigate('Historial');
+    navigation.navigate('History');
   };
 
   const handlePressNoveltyes = () => {
@@ -82,9 +83,9 @@ const Home = ({}) => {
 
   const handlePressTycPp = (type: number) => {
     if (type === 1) {
-      //navigation.navigate('Terms', { type: 1 });
+      navigation.navigate('Terms', {type: 1});
     } else if (type === 2) {
-      //navigation.navigate('Terms', { type: 2 });
+      navigation.navigate('Policy', {type: 2});
     }
   };
 

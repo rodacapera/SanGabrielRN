@@ -1,18 +1,18 @@
+import React, {useState, useEffect} from 'react';
 import CustomNavBar from '@src/components/navBar/CustomNavBar';
 import {sG} from '@src/globals/styles/styles';
-import {useEffect, useState} from 'react';
 import {
-  ActivityIndicator,
   SafeAreaView,
   ScrollView,
-  Text,
-  View
+  View,
+  ActivityIndicator,
+  Text
 } from 'react-native';
 import {WebView} from 'react-native-webview';
 
-export const TermsTemplate = () => {
+export const Policy = () => {
   const pdfUrl =
-    'https://drive.google.com/file/d/1XvpPCn8xOg8hJIdNCUTZQYbiw8YBMRWY/preview'; // Asegúrate de usar la URL correcta
+    'https://drive.google.com/file/d/1l9_6N54eqmea95FXN-cHKjWz5niSPzQf/preview'; // Asegúrate de usar la URL correcta
 
   const [loading, setLoading] = useState(true); // Controla la carga
   const [error, setError] = useState(false); // Controla el error
@@ -43,7 +43,7 @@ export const TermsTemplate = () => {
 
   return (
     <SafeAreaView style={[sG.container, sG.bg_white]}>
-      <CustomNavBar title="Términos y condiciones" />
+      <CustomNavBar title="Politica de Privacidad" />
       <ScrollView
         contentContainerStyle={{flexGrow: 1}}
         style={[sG.bg_black, sG.p_t_xxl]}>

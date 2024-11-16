@@ -2,30 +2,6 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/assets/fonts/Catamaran-Bold.ttf",
-      "sha1": "0682f99c3da1b0f6eb2890a6bb3cd365eef4b685"
-    },
-    {
-      "path": "src/assets/fonts/Catamaran-Medium.ttf",
-      "sha1": "0752d1fe94087a267ce8272d317b2e116c27038b"
-    },
-    {
-      "path": "src/assets/fonts/Catamaran-Regular.ttf",
-      "sha1": "827cf848efd74010607980047b4ca544db27982a"
-    },
-    {
-      "path": "src/assets/fonts/NotoSans-Bold.ttf",
-      "sha1": "e18f3ad767d6060b0c41d12eecd45aa152b28f45"
-    },
-    {
-      "path": "src/assets/fonts/NotoSans-Medium.ttf",
-      "sha1": "f85d0a08f987df19288a61f18a22519ce0551c3e"
-    },
-    {
-      "path": "src/assets/fonts/NotoSans-Regular.ttf",
-      "sha1": "692393fb9239fe61e47dff7232400c45770f162f"
-    },
-    {
       "path": "node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
       "sha1": "4e77868439280fb434d4697c7b911271406c81f3"
     },

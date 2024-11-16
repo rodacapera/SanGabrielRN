@@ -13,7 +13,8 @@ EStyleSheet.build({
   $colorOrange: '#f44611',
   $colorGrayLight: '#a0a0a0',
   $colorLight: '#f2f2f2',
-  $colorRed: '#ff7a7a'
+  $colorRed: '#ff7a7a',
+  $colorBlack: '#171717'
 });
 
 const sG = EStyleSheet.create({
@@ -103,6 +104,7 @@ const sG = EStyleSheet.create({
   bg_red: {backgroundColor: '$colorRed'},
   bg_white: {backgroundColor: '#ffffff'},
   bg_transparent: {backgroundColor: 'transparent'},
+  bg_black: {backgroundColor: '$colorBlack'},
 
   bg_zindex_transparent: {backgroundColor: 'rgba(52, 52, 52, 0.3)'},
   bg_zindex_camera: {backgroundColor: 'rgba(52, 52, 52, 0.8)'},
@@ -393,6 +395,7 @@ const sG = EStyleSheet.create({
   h8: {fontSize: '10rem'},
 
   bold: {fontWeight: 'bold'},
+  semi_bold: {fontWeight: 300},
   underline: {textDecorationLine: 'underline'},
   line_through: {textDecorationLine: 'line-through'},
 
@@ -407,6 +410,7 @@ const sG = EStyleSheet.create({
   p_x_md: {paddingHorizontal: '20rem'},
   p_x_lg: {paddingHorizontal: '30rem'},
   p_x_xl: {paddingHorizontal: '50rem'},
+  p_x_xxl: {paddingHorizontal: '70rem'},
 
   p_y_xs: {paddingVertical: '12.5rem'},
   p_y_sm: {paddingVertical: '15rem'},
