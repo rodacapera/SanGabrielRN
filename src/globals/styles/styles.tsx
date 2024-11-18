@@ -412,6 +412,7 @@ const sG = EStyleSheet.create({
   p_x_xl: {paddingHorizontal: '50rem'},
   p_x_xxl: {paddingHorizontal: '70rem'},
 
+  p_y_xxs: {paddingVertical: '6.5rem'},
   p_y_xs: {paddingVertical: '12.5rem'},
   p_y_sm: {paddingVertical: '15rem'},
   p_y_md: {paddingVertical: '20rem'},
@@ -456,6 +457,7 @@ const sG = EStyleSheet.create({
   m_x_lg: {marginHorizontal: '30rem'},
   m_x_xl: {marginHorizontal: '50rem'},
 
+  m_y_xxs: {marginVertical: '4rem'},
   m_y_xs: {marginVertical: '12.5rem'},
   m_y_sm: {marginVertical: '15rem'},
   m_y_md: {marginVertical: '20rem'},
