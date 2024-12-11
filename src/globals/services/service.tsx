@@ -3,7 +3,7 @@ import {ConfigConstants} from '../config/config';
 
 // Define la forma de los datos que se reciben en la función
 interface ApiData {
-  method?: 'GET' | 'POST' | 'PUT' | 'DELETE'; // Método HTTP (GET por defecto)
+  method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'; // Método HTTP (GET por defecto)
   credentials?: 'include' | 'same-origin' | 'omit'; // Indica si se deben enviar credenciales (cookies)
   body?: any; // Cuerpo de la solicitud, puede ser un objeto JSON o FormData
   form?: string; // Tipo de contenido si es un formulario
@@ -61,9 +61,7 @@ export const asyncSendApis = async (
       config.data = data.body; // Asigna directamente el cuerpo si no es un formulario
     }
   }
-
-  console.log('config', config);
-
+  
   // Envía la solicitud utilizando Axios y espera la respuesta
   const response: AxiosResponse = await axios(config);
   const json: ApiResponse = response.data;

@@ -86,8 +86,7 @@ const LoginHook = ({}: {}) => {
                 username: username,
                 password: password
               })
-            };
-            console.log('data', data);
+            };;
             let response = await asyncSendApis('/rest-auth/login/', data);
             console.log('response handlePressLogin', response.status);
 

@@ -250,7 +250,7 @@ const Login = () => {
             </View>
           </ScrollView>
         </KeyboardAwareScrollView>
-        {verifyVersion ? (
+       {/*  {verifyVersion ? (
           <View
             style={[
               sG.h_100,
@@ -305,7 +305,7 @@ const Login = () => {
               </View>
             </View>
           </View>
-        ) : null}
+        ) : null} */}
         {verifyLocation ? (
           <View
             style={[

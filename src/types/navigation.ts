@@ -1,5 +1,5 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {StackNavigationProp} from '@react-navigation/stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackNavigationProp } from '@react-navigation/stack';
 import About from '@src/templates/settings/About';
 
 export type RouteStackParamList = {
@@ -7,11 +7,13 @@ export type RouteStackParamList = {
   Login: undefined;
   Home: undefined;
   PasswordOne: undefined;
-  Terms: {type: number};
-  Policy: {type: number};
+  Terms: { type: number };
+  Policy: { type: number };
   About: undefined;
   Services: undefined;
   History: undefined;
+  ServicesDetails: { id: any, fecha: any, status: any };
+  Scanpdf417: any;
 };
 
 export type StackNavigation = StackNavigationProp<RouteStackParamList>;
@@ -53,4 +55,14 @@ export type PolicyNavigation = NativeStackScreenProps<
 export type TermsNavigation = NativeStackScreenProps<
   RouteStackParamList,
   'Terms'
+>;
+
+export type ServicesDetailsNavigation = NativeStackScreenProps<
+  RouteStackParamList,
+  'ServicesDetails'
+>;
+
+export type Scanpdf417Navigation = NativeStackScreenProps<
+  RouteStackParamList,
+  'Scanpdf417'
 >;

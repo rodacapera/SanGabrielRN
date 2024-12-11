@@ -1,7 +1,9 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import History from '@src/templates/history/History';
-import Services from '@src/templates/services/Services';
+import { Scanpdf417Template } from '@src/templates/services/Scanpdf417';
+import { ServicesDetailsTemplate } from '@src/templates/services/ServiceDetails';
+import { Services } from '@src/templates/services/Services';
 import About from '@src/templates/settings/About';
 import {Policy} from '@src/templates/settings/policy';
 import Login from 'src/templates/begin/Login';
@@ -33,6 +35,8 @@ const StackNavigator = () => {
         <Stack.Screen name="About" component={About} />
         <Stack.Screen name="Services" component={Services} />
         <Stack.Screen name="History" component={History} />
+        <Stack.Screen name="ServicesDetails" component={ServicesDetailsTemplate} />
+        <Stack.Screen name="Scanpdf417" component={Scanpdf417Template} />
       </Stack.Navigator>
     </NavigationContainer>
   );

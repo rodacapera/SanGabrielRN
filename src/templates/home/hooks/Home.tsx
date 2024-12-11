@@ -43,8 +43,6 @@ const Home = ({}) => {
         token: await AsyncStorage.getItem('Token')
       };
       const response = await asyncSendApis('/apis/userConductor/', data);
-      console.log('response', response);
-
       if (response.status) {
         setPlaca(response[0].placa);
         setTelefono(response[0].telefono);
