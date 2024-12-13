@@ -142,18 +142,62 @@ const ServicesDetails = ({ }) => {
 
             return { latitude, longitude };
         } catch (error) {
-            console.error('Error al obtener la ubicación:', error);
+            console.log('Error al obtener la ubicación:', error);
             throw error;
         }
     };
 
-    const handlePressEnviar = () => {
+    const handlePressEnviar = async () => {
+        let currentLatitude = latitude;
+        let currentLongitude = longitude;
 
+        if (!currentLatitude || !currentLongitude) {
+            try {
+                const location = await getLocation();
+                currentLatitude = location.latitude.toString();
+                currentLongitude = location.longitude.toString();
+            } catch {
+                Alert.alert("Error", "No se pudo obtener la ubicación. Por favor, intente nuevamente.");
+                setVisibleMenu(false);
+                setLoadingModal(false);
+                setSendLoading(false);
+                return;
+            }
+        }
+
+        const dis = getDistance(
+            { latitude: currentLatitude, longitude: currentLongitude },
+            { latitude: latDestino, longitude: lngDestino }
+        );
+
+        setTimeout(() => {
+            Alert.alert(
+                "Ubicación errónea",
+                `Señor conductor, Usted está a ${(dis / 1000).toFixed(1)} km de donde debe finalizar el servicio \n\n¿Desea finalizarlo? `,
+                [
+                    {
+                        text: "NO", onPress: () => console.log("Cancel Pressed"),
+                    },
+                    {
+                        text: "SI", onPress: () => {
+                            navigation.navigate('ServiceValidations', {
+                                fecha: fecha,
+                                id: id,
+                                numeroDocumento_usuario: numeroDocumentoUsuario,
+                                tipo: '2',
+                                latitude: latitude,
+                                longitude: longitude
+                            })
+                        }
+                    }
+                ]
+            );
+        }, 100);
     };
 
     // Obtener los datos de la ruta
     const getData = () => {
-        const { id, fecha, status } = route.params;
+        const { id, fecha, status } = route.params as { id: string, fecha: string, status: string };
         setId(id);
         setFecha(fecha);
         setStatusServicio(status);
@@ -172,7 +216,7 @@ const ServicesDetails = ({ }) => {
                 setValidateService(true);
             }
         } catch (error) {
-            console.log("ErrorGetData====> ", error);
+            //console.log("ErrorGetData====> ", error);
         }
     };
 
@@ -335,16 +379,14 @@ const ServicesDetails = ({ }) => {
                     {
                         text: "SI",
                         onPress: () => {
-                            setTimeout(() => {
-                                navigation.navigate('Scanpdf417', {
-                                    fecha: fecha,
-                                    id: id,
-                                    numeroDocumento_usuario: numeroDocumentoUsuario,
-                                    tipo: '1',
-                                    latitude: latitude,
-                                    longitude: longitude
-                                })
-                            }, 1000);
+                            navigation.navigate('ServiceValidations', {
+                                fecha: fecha,
+                                id: id,
+                                numeroDocumento_usuario: numeroDocumentoUsuario,
+                                tipo: '1',
+                                latitude: latitude,
+                                longitude: longitude
+                            })
                             setVisibleMenu(false);
                             setLoadingModal(false);
                             setSendLoading(false);
@@ -352,7 +394,7 @@ const ServicesDetails = ({ }) => {
                     }
                 ]
             );
-        }, 3000);
+        }, 100);
     };
 
     const handlePressStateService = async () => {

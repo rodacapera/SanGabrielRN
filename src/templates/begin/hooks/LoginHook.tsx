@@ -88,8 +88,6 @@ const LoginHook = ({}: {}) => {
               })
             };;
             let response = await asyncSendApis('/rest-auth/login/', data);
-            console.log('response handlePressLogin', response.status);
-
             if (response.status) {
               tokenValidate(response.key);
               api_put_id_device(response.key);
@@ -147,8 +145,6 @@ const LoginHook = ({}: {}) => {
         '/usuarios/actualizarDispositivos',
         data
       );
-      console.log('response api_put_id_device', response.status);
-
       if (response.status) {
         setIsLoading(false);
         navigation.navigate('Home');

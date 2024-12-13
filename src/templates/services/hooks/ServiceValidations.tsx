@@ -4,8 +4,9 @@ import { asyncSendApis } from '@src/globals/services/service';
 import { ApiData } from '@src/types/api';
 import { StackNavigation } from '@src/types/navigation';
 import { useEffect, useState } from 'react';
+import BackgroundGeolocation from 'react-native-background-geolocation';
 
-const Scanpdf417 = ({ }) => {
+const ServiceValidations = ({ }) => {
     const navigation = useNavigation<StackNavigation>();
     const route = useRoute();
     const [scanned, setScanned] = useState(false);
@@ -21,9 +22,25 @@ const Scanpdf417 = ({ }) => {
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
 
-    const location = async () => {
+    // Obtener la ubicación actual del dispositivo
+    const getLocation = async () => {
+        try {
+            const currentLocation = await BackgroundGeolocation.getCurrentPosition({
+                timeout: 40,
+                desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_LOWEST,
+                persist: false,
+            });
 
-    }
+            const { latitude, longitude } = currentLocation.coords;
+            setLatitude(latitude.toString());
+            setLongitude(longitude.toString());
+
+            return { latitude, longitude };
+        } catch (error) {
+            console.error('Error al obtener la ubicación:', error);
+            throw error;
+        }
+    };
 
     const handlePress = async () => {
         setSendLoading(true);
@@ -44,24 +61,17 @@ const Scanpdf417 = ({ }) => {
                 };
 
                 const response = await asyncSendApis(`/apis/servicios/${fechaService}/${idService}/`, data);
-
                 if (response.status) {
-                    let CantidadCurso = await AsyncStorage.getItem('CantidadCurso');
-                    CantidadCurso = CantidadCurso ? parseInt(CantidadCurso) + 1 : 1;
-
-                    if (CantidadCurso === 1) {
-                        setTimeout(() => {
-                            locationFile.startForegroundUpdate();
-                            locationFile.startBackgroundUpdate();
-                        }, 1000);
+                    let CantidadCurso = await AsyncStorage.getItem('CantidadCurso')
+                    if (CantidadCurso != null) {
+                        CantidadCurso = (parseInt(CantidadCurso) + 1).toString();
+                    } else {
+                        CantidadCurso = "1"
                     }
-
-                    await AsyncStorage.setItem('CantidadCurso', CantidadCurso.toString());
-                    setSendLoading(false);
+                    await AsyncStorage.setItem('CantidadCurso', "" + CantidadCurso);
+                    await setSendLoading(false);
                     navigation.navigate('Services');
                 } else {
-                    alert(response);
-                    console.log(response);
                     setSendLoading(false);
                 }
             } catch (error) {
@@ -69,12 +79,12 @@ const Scanpdf417 = ({ }) => {
                 setSendLoading(false);
             }
         } else {
-            location();
+            getLocation();
         }
     };
 
     const handlePressFinish = () => {
-        //navigation.navigate('Signature', { id: idService, fecha: fechaService });
+        navigation.navigate('Signature', { id: idService, fecha: fechaService });
     };
 
     const handlePressScaned = () => {
@@ -100,11 +110,7 @@ const Scanpdf417 = ({ }) => {
     const handlePressVerifyManualDocument = async () => {
         if (documentManual != '') {
             setScanned(true);
-            const id = await route.params?.id;
-            const fecha = await route.params?.fecha;
-            const tipo = await route.params?.tipo;
-            const latitude = await route.params?.latitude;
-            const longitude = await route.params?.longitude;
+            const { id, fecha, tipo, latitude, longitude } = route.params as { id: string; fecha: string; tipo: string; latitude: any; longitude: any; };
             setId(id);
             setFecha(fecha);
             setLatitude(latitude);
@@ -132,9 +138,7 @@ const Scanpdf417 = ({ }) => {
 
     const getDataFinish = async () => {
         try {
-            const id = route.params?.id;
-            const fecha = route.params?.fecha;
-
+            const { id, fecha } = route.params as { id: string; fecha: string };
             let data = {
                 token: await AsyncStorage.getItem('Token'),
             }
@@ -153,8 +157,8 @@ const Scanpdf417 = ({ }) => {
 
     useEffect(() => {
         getDataFinish();
-        location();
-    }, [getDataFinish, location]);
+        getLocation();
+    }, [getDataFinish, getLocation]);
 
     return {
         scanned,
@@ -190,4 +194,4 @@ const Scanpdf417 = ({ }) => {
     };
 };
 
-export default Scanpdf417;
+export default ServiceValidations;

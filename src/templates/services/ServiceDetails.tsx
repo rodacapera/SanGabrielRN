@@ -2,9 +2,7 @@ import { TouchableOpacity, Text, View, ImageBackground, ScrollView, ActivityIndi
 import { BottomSheet } from 'react-native-btr';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Foundation from 'react-native-vector-icons/Foundation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import { sG } from '@src/globals/styles/styles';
 import { btn_back } from '@src/assets/images';
 import ServicesDetails from './hooks/ServiceDetails';
@@ -367,7 +365,7 @@ export const ServicesDetailsTemplate = () => {
                                 <TouchableOpacity style={[sG.ai_end, sG.jc_center, sG.row_15, sG.w_100]} onPress={toggleBottomNavigationView}>
                                     <MaterialCommunityIcons name="close-circle" style={[sG.size_icon, sG.text_red, sG.p_r_xs]} />
                                 </TouchableOpacity>
-                                {!validateService ?
+                                {validateService ?
                                     <TouchableOpacity style={[sG.ai_center, sG.jc_center, sG.row_20, sG.w_100]} onPress={handlePressPreoperatively}>
                                         <View style={[sG.ai_center, sG.h_90, sG.w_90, sG.border_bottom, sG.chrow]}>
                                             <FontAwesome name="play" style={[sG.size_icon, sG.text_black]} />

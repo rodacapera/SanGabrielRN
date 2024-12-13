@@ -64,7 +64,7 @@ const Home = ({}) => {
   };
 
   const handlePressClose = async () => {
-    try {
+   /*  try {
       let data: ApiData = {
         token: await AsyncStorage.getItem('Token'),
         method: 'POST'
@@ -78,7 +78,8 @@ const Home = ({}) => {
       }
     } catch (error) {
       console.log('CatchError ==> ', error);
-    }
+    } */
+      clearLogout();
   };
 
   const handlePressTycPp = (type: number) => {

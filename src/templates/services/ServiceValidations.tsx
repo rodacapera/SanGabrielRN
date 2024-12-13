@@ -1,12 +1,12 @@
 import { Text, View, TouchableOpacity, ActivityIndicator, Modal, ScrollView, TextInput } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import Scanpdf417 from './hooks/Scanpdf417';
+import ServiceValidations from './hooks/ServiceValidations';
 import { sG } from '@src/globals/styles/styles';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-export const Scanpdf417Template = () => {
+export const ServiceValidationsTemplate = () => {
     const {
         scanned,
         documentValid,
@@ -23,7 +23,7 @@ export const Scanpdf417Template = () => {
         handlePressScaned,
         handlePressFinish,
         handlePressVerifyManualDocument
-    } = Scanpdf417({});
+    } = ServiceValidations({});
 
     return (
         <View style={[sG.container]}>

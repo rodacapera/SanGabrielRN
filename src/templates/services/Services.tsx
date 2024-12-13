@@ -109,7 +109,7 @@ export const Services = () => {
           style={[sG.w_100]}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item, index }) => (
-            item.estadoServicio === 7 ? null :
+            item.estadoServicio === 7 || item.estadoServicio === 6  ? null :
               <View style={[sG.row_50, sG.w_100, sG.ai_center, sG.jc_center]}>
                 {item.estadoServicio === 22 ?
                   /* Estado liberado */
@@ -128,15 +128,16 @@ export const Services = () => {
                     />
                   </View>
                   : item.estadoServicio === 4 || item.estadoServicio === 24 || item.estadoServicio === 21 ?
-                    <TouchableOpacity style={[sG.h_90, sG.w_90, sG.ai_center, sG.jc_center]} onPress={() => handlePressDetails(item.id, '2')}>
-                      {/* <ServiceRefused
-                        id={item.id}
-                        nombre={item.pasajero.primer_nombre + ' ' + item.pasajero.primer_apellido}
-                        horaRecogida={item.horaRecogida}
-                        estadoAssing={item.estadoAssing}
-                        Novedad={item.novedad ? item.novedad.nombre : item.novedad}
-                      /> */}
-                    </TouchableOpacity>
+                    /*  <TouchableOpacity style={[sG.h_90, sG.w_90, sG.ai_center, sG.jc_center]} onPress={() => handlePressDetails(item.id, '2')}>
+                       <ServiceRefused
+                         id={item.id}
+                         nombre={item.pasajero.primer_nombre + ' ' + item.pasajero.primer_apellido}
+                         horaRecogida={item.horaRecogida}
+                         estadoAssing={item.estadoAssing}
+                         Novedad={item.novedad ? item.novedad.nombre : item.novedad}
+                       /> 
+                     </TouchableOpacity> */
+                    null
                     : item.estadoServicio === 23 ? /* 23 - Estado Aceptado */
                       <View style={[sG.h_90, sG.w_90, sG.ai_center, sG.jc_center]}>
                         <ServiceAccepted

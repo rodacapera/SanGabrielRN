@@ -13,7 +13,8 @@ export type RouteStackParamList = {
   Services: undefined;
   History: undefined;
   ServicesDetails: { id: any, fecha: any, status: any };
-  Scanpdf417: any;
+  ServiceValidations: any;
+  Signature: any;
 };
 
 export type StackNavigation = StackNavigationProp<RouteStackParamList>;
@@ -62,7 +63,11 @@ export type ServicesDetailsNavigation = NativeStackScreenProps<
   'ServicesDetails'
 >;
 
-export type Scanpdf417Navigation = NativeStackScreenProps<
+export type ServiceValidationsNavigation = NativeStackScreenProps<
   RouteStackParamList,
-  'Scanpdf417'
+  'ServiceValidations'
+>;
+export type Signature = NativeStackScreenProps<
+  RouteStackParamList,
+  'Signature'
 >;
