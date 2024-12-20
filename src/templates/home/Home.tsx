@@ -2,8 +2,9 @@ import {app_bg_01, logo_color_app} from '@src/assets/images';
 import {ImageBackground, Text, TouchableOpacity, View} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {sG} from '../../globals/styles/styles';
 import Home from './hooks/Home';
 
@@ -108,8 +109,8 @@ const HomeTemplate = () => {
               </Text>
             </View>
             <View style={[sG.h_30, sG.w_90, sG.ai_end, sG.jc_center]}>
-              <AntDesign
-                name="notification"
+              <MaterialIcons
+                name="notifications-none"
                 style={[sG.size_icon_md, sG.text_white]}
               />
             </View>
@@ -183,7 +184,7 @@ const HomeTemplate = () => {
                     Historial Novedades
                   </Text>
                 </View>
-                <FontAwesome5
+                <FontAwesome
                   name="history"
                   style={[sG.size_icon, sG.text_white]}
                 />
@@ -214,8 +215,8 @@ const HomeTemplate = () => {
                     Acerca de{' '}
                   </Text>
                 </View>
-                <AntDesign
-                  name="infocirlce"
+                <FontAwesome
+                  name="info-circle"
                   style={[sG.size_icon, sG.text_white]}
                 />
               </View>

@@ -1,7 +1,11 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import History from '@src/templates/history/History';
-import Services from '@src/templates/services/Services';
+import { SendReportTemplate } from '@src/templates/sendReport/SendReport';
+import { ServicesDetailsTemplate } from '@src/templates/serviceDetails/ServiceDetails';
+import { Services } from '@src/templates/services/Services';
+import { ServiceValidationsTemplate } from '@src/templates/serviceValidations/ServiceValidations';
+import { SignatureTemplate } from '@src/templates/signature/Signature';
 import About from '@src/templates/settings/About';
 import {Policy} from '@src/templates/settings/policy';
 import Login from 'src/templates/begin/Login';
@@ -33,6 +37,10 @@ const StackNavigator = () => {
         <Stack.Screen name="About" component={About} />
         <Stack.Screen name="Services" component={Services} />
         <Stack.Screen name="History" component={History} />
+        <Stack.Screen name="ServicesDetails" component={ServicesDetailsTemplate} />
+        <Stack.Screen name="ServiceValidations" component={ServiceValidationsTemplate} />
+        <Stack.Screen name="Signature" component={SignatureTemplate} />
+        <Stack.Screen name="SendReport" component={SendReportTemplate} />
       </Stack.Navigator>
     </NavigationContainer>
   );
