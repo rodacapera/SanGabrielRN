@@ -31,8 +31,12 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Necesitamos acceder a tu ubicación incluso cuando la aplicación está en segundo plano para ofrecer un mejor servicio.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Usamos tu ubicación para proporcionar una experiencia personalizada mientras usas la aplicación.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Se requiere acceso a datos de movimiento para detectar actividad en el dispositivo.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>MaterialCommunityIcons.ttf</string>
@@ -59,6 +63,9 @@
 	<array>
 		<string>processing</string>
 		<string>remote-notification</string>
+		<string>location</string>
+		<string>fetch</string>
+		<string>audio</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

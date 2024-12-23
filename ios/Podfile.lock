@@ -1,5 +1,8 @@
 PODS:
   - boost (1.84.0)
+  - CocoaLumberjack (3.8.5):
+    - CocoaLumberjack/Core (= 3.8.5)
+  - CocoaLumberjack/Core (3.8.5)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.76.1)
   - Firebase/CoreOnly (11.4.0):
@@ -1677,6 +1680,11 @@ PODS:
     - React-logger (= 0.76.1)
     - React-perflogger (= 0.76.1)
     - React-utils (= 0.76.1)
+  - RNBackgroundFetch (4.2.7):
+    - React-Core
+  - RNBackgroundGeolocation (4.18.2):
+    - CocoaLumberjack (~> 3.8.5)
+    - React-Core
   - RNCAsyncStorage (2.0.0):
     - DoubleConversion
     - glog
@@ -1847,6 +1855,8 @@ DEPENDENCIES:
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCodegen (from `build/generated/ios`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
+  - RNBackgroundGeolocation (from `../node_modules/react-native-background-geolocation`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
@@ -1858,6 +1868,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - CocoaLumberjack
     - Firebase
     - FirebaseCore
     - FirebaseCoreExtension
@@ -2002,6 +2013,10 @@ EXTERNAL SOURCES:
     :path: build/generated/ios
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNBackgroundFetch:
+    :path: "../node_modules/react-native-background-fetch"
+  RNBackgroundGeolocation:
+    :path: "../node_modules/react-native-background-geolocation"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCPicker:
@@ -2021,6 +2036,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: 1dca942403ed9342f98334bf4c3621f011aa7946
+  CocoaLumberjack: 6a459bc897d6d80bd1b8c78482ec7ad05dffc3f0
   DoubleConversion: f16ae600a246532c4020132d54af21d0ddb2a385
   FBLazyVector: 7075bb12898bc3998fd60f4b7ca422496cc2cdf7
   Firebase: cf1b19f21410b029b6786a54e9764a0cacad3c99
@@ -2095,6 +2111,8 @@ SPEC CHECKSUMS:
   React-utils: d8c3a2e6360f5308c1974b9f006a5ef30e87267c
   ReactCodegen: 13fc33b956caafe5244ac3e0522aa38426b504ca
   ReactCommon: 08db07e471b7ee1cadfa9e347c8224fd4cefc4b5
+  RNBackgroundFetch: 11d6fff0247a2c7623c7db00e3cd65e405d216ea
+  RNBackgroundGeolocation: 1f32abe2781c92485e197061f9c77c11e43c90c1
   RNCAsyncStorage: 5601d6c658f0bf0a3714ea53e2b42ad25ac550ea
   RNCPicker: f8be04ea7b8b4503ddb6ca3526ac839fc86772df
   RNCPushNotificationIOS: 64218f3c776c03d7408284a819b2abfda1834bc8
@@ -2103,7 +2121,7 @@ SPEC CHECKSUMS:
   RNFBMessaging: e356d5e27b9bd54db1e26c5112cfe3e9d0083aef
   RNScreens: f493b156fe5de2434806b5a2c410800b2cd76c0e
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  Yoga: 023511aabec491584a8cf06373c0429d5d6aa158
+  Yoga: 83048fe4b4ce15018a5e9ccbf0b06bd76fc643d4
 
 PODFILE CHECKSUM: 2c2ee7d95422093339b226e178f1337ef6780745
 
