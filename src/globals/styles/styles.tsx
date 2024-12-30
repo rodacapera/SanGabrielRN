@@ -368,6 +368,7 @@ const sG = EStyleSheet.create({
   row_80: {flex: 1, aspectRatio: 1 / 0.8},
   row_90: {flex: 1, aspectRatio: 1 / 0.9},
   row_100: {flex: 1, aspectRatio: 1 / 1},
+  row_110: {flex: 1, aspectRatio: 1 / 1},
   row_120: {flex: 1, aspectRatio: 1 / 1.2},
   row_130: {flex: 1, aspectRatio: 1 / 1.3},
   row_140: {flex: 1, aspectRatio: 1 / 1.4},

@@ -15,6 +15,9 @@ export type RouteStackParamList = {
   ServicesDetails: { id: any, fecha: any, status: any };
   ServiceValidations: any;
   Signature: any;
+  SendReport: any;
+  ReportObsFinished: any;
+  NoveltyDetails: any;
 };
 
 export type StackNavigation = StackNavigationProp<RouteStackParamList>;
@@ -67,7 +70,23 @@ export type ServiceValidationsNavigation = NativeStackScreenProps<
   RouteStackParamList,
   'ServiceValidations'
 >;
+
 export type Signature = NativeStackScreenProps<
   RouteStackParamList,
   'Signature'
+>;
+
+export type SendReport = NativeStackScreenProps<
+  RouteStackParamList,
+  'SendReport'
+>;
+
+export type ReportObsFinished = NativeStackScreenProps<
+  RouteStackParamList,
+  'ReportObsFinished'
+>;
+
+export type NoveltyDetails = NativeStackScreenProps<
+  RouteStackParamList,
+  'NoveltyDetails'
 >;

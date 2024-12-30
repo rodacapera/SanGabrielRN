@@ -86,8 +86,6 @@ const CustomCalendar: React.FC<CustomCalendarProps> = ({setDateSelected}) => {
     setSelectedDate(moment(updatedDate).format('YYYY-MM-DD'));
   }, []);
 
-  console.log('selectedDate', selectedDate);
-
   return (
     <View>
       <TouchableOpacity onPress={() => setIsVisible(true)}>

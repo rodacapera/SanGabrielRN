@@ -13,7 +13,7 @@ interface ServiceProps {
     item: any;
     handlePressDetails: any;
     handlePressChat: (novelty: any, id: string) => void;
-    visibleNovedades: (id: string, estadoServicio: string, hasNovelty: boolean, item: any) => void;
+    visibleNovedades: (id: string, estadoServicio: string, item: any) => void;
 }
 
 export default class ServiceOngoing extends Component<ServiceProps> {
@@ -28,7 +28,7 @@ export default class ServiceOngoing extends Component<ServiceProps> {
                         <View style={[sG.w_80, sG.jc_end, sG.ai_center, sG.chrow]}>
                             <Text style={[sG.h8, sG.text_primary, sG.bold]}>Reportar Novedad </Text>
                             <MaterialCommunityIcons name="chevron-right-circle" style={[sG.size_icon, sG.text_primary]} />
-                            </View>
+                        </View>
                     </View>
                     <View style={[sG.w_90, sG.ai_center, sG.jc_center, sG.chrow]}>
                         <View style={[sG.w_40, sG.jc_center]}>
@@ -68,7 +68,7 @@ export default class ServiceOngoing extends Component<ServiceProps> {
                         <Text style={[sG.h8, sG.text_white, sG.bold]}>Ver Novedad</Text>
                     </TouchableOpacity>
                     :
-                    <TouchableOpacity style={[sG.h_20, sG.w_100, sG.ai_center, sG.jc_center, sG.bg_secondary]} onPress={() => this.props.visibleNovedades(this.props.id, this.props.estadoServicio, this.props.hasNovelty === null ? false : true, this.props.item)}>
+                    <TouchableOpacity style={[sG.h_20, sG.w_100, sG.ai_center, sG.jc_center, sG.bg_secondary]} onPress={() => this.props.visibleNovedades(this.props.id, this.props.estadoServicio, this.props.item)}>
                         <Text style={[sG.h8, sG.text_white, sG.bold]}>Reportar Novedad</Text>
                     </TouchableOpacity>
                 }

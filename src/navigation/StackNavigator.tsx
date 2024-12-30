@@ -16,6 +16,8 @@ import PasswordOne from 'src/templates/password/PasswordOne';
 import PasswordThree from 'src/templates/password/PasswordThree';
 import PasswordTwo from 'src/templates/password/PasswordTwo';
 import {TermsTemplate} from 'src/templates/settings/terms';
+import { ReportObsFinishedTemplate } from '@src/templates/reportObsFinished/ReportObsFinished';
+import { NoveltyDetailsTemplate } from '@src/templates/noveltyDetails/NoveltyDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +43,8 @@ const StackNavigator = () => {
         <Stack.Screen name="ServiceValidations" component={ServiceValidationsTemplate} />
         <Stack.Screen name="Signature" component={SignatureTemplate} />
         <Stack.Screen name="SendReport" component={SendReportTemplate} />
+        <Stack.Screen name="ReportObsFinished" component={ReportObsFinishedTemplate} />
+        <Stack.Screen name="NoveltyDetails" component={NoveltyDetailsTemplate} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,5 +1,6 @@
 import { TouchableOpacity, Text, View, ImageBackground, ActivityIndicator, FlatList } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { BottomSheet } from 'react-native-btr';
 import { sG } from '@src/globals/styles/styles';
 import ServicesList from './hooks/Services';
@@ -108,7 +109,7 @@ export const Services = () => {
           style={[sG.w_100]}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item, index }) => (
-            item.estadoServicio === 7 || item.estadoServicio === 6  ? null :
+            item.estadoServicio === 7 ? null :
               <View style={[sG.row_50, sG.w_100, sG.ai_center, sG.jc_center]}>
                 {item.estadoServicio === 22 ?
                   /* Estado liberado */
@@ -137,7 +138,7 @@ export const Services = () => {
                        /> 
                      </TouchableOpacity> */
                     null
-                    : item.estadoServicio === 23 ? /* 23 - Estado Aceptado */
+                    : item.estadoServicio === 23 || item.estadoServicio === 6 ? /* 23 - Estado Aceptado - 6 Estado Completado*/
                       <View style={[sG.h_90, sG.w_90, sG.ai_center, sG.jc_center]}>
                         <ServiceAccepted
                           item={item}
@@ -208,6 +209,139 @@ export const Services = () => {
         </View>
       </BottomSheet>
 
+      <BottomSheet
+        visible={visibleNovedades}
+        //setting the visibility state of the bottom shee
+        onBackButtonPress={closeVisibleNovedades}
+        //Toggling the visibility state on the click of the back botton
+        onBackdropPress={closeVisibleNovedades}
+      //Toggling the visibility state on the clicking out side of the sheet
+      >
+        <View style={[sG.bg_white, sG.w_100, sG.h_40, sG.jc_center, sG.ai_center, sG.brounded_top]}>
+
+          {visibleCategories === true || visibleSubCategories === true || visibleNovelty === true ?
+            <View style={[sG.w_100, sG.h_10, sG.ai_center]}>
+              <View style={[sG.w_85, sG.h_100, sG.ai_start]}>
+                <TouchableOpacity style={[sG.w_30, sG.h_100, sG.ai_start]} onPress={() => handleBackModal()}>
+                  <MaterialIcons name="arrow-back" style={[sG.size_icon_md, sG.text_gray, sG.bold]} />
+                </TouchableOpacity>
+              </View>
+            </View>
+            :
+            <TouchableOpacity style={[sG.w_100, sG.h_10, sG.ai_center]} onPress={() => closeVisibleNovedades()} >
+              <View style={[sG.w_80, sG.h_100, sG.ai_center]}>
+                <MaterialIcons name="horizontal-rule" style={[sG.size_icon_md, sG.text_gray, sG.bold]} />
+              </View>
+            </TouchableOpacity>
+          }
+
+          {visibleCategories ?
+            <View style={[sG.w_85, sG.h_80, sG.ai_center]}>
+              <FlatList
+                data={dataCategories}
+                style={[sG.w_100]}
+                keyExtractor={item => item.id}
+                renderItem={({ item }) => (
+                  <View style={[sG.row_20, sG.w_100, sG.ai_center, sG.jc_center]}>
+                    <TouchableOpacity style={[sG.h_90, sG.w_90, sG.ai_center, sG.jc_center, sG.border_bottom]} onPress={() => handleChangeCategory(item.id, item.nombre)}>
+                      <Text style={[sG.h7, categoryIdSelected === item.id ? sG.bold : null, sG.text_black, sG.text_center]}>{item.nombre}</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              />
+            </View>
+            : visibleSubCategories ?
+              <View style={[sG.w_85, sG.h_80, sG.ai_center]}>
+                {dataSubCategories.length > 0 ?
+                  <FlatList
+                    data={dataSubCategories}
+                    style={[sG.w_100]}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) => (
+                      <View style={[sG.row_20, sG.w_100, sG.ai_center, sG.jc_center]}>
+                        <TouchableOpacity style={[sG.h_90, sG.w_90, sG.ai_center, sG.jc_center, sG.border_bottom]} onPress={() => handleChangeSubCategory(item.id, item.nombre)}>
+                          <Text style={[sG.h7, subCategoryIdSelected === item.id ? sG.bold : null, sG.text_black, sG.text_center]}>{item.nombre}</Text>
+                        </TouchableOpacity>
+                      </View>
+                    )}
+                  />
+                  :
+                  <View style={[sG.h_100, sG.w_90, sG.ai_center, sG.jc_center]}>
+                    <Text style={[sG.h7, sG.text_gray_light, sG.text_justify, sG.text_center]}>No hay subcategorías disponibles</Text>
+                  </View>
+                }
+              </View>
+              : visibleNovelty ?
+                <View style={[sG.w_85, sG.h_80, sG.ai_center]}>
+                  {dataNovelty.length > 0 ?
+                    <FlatList
+                      data={dataNovelty}
+                      style={[sG.w_100]}
+                      keyExtractor={item => item.id}
+                      renderItem={({ item }) => (
+                        <View style={[sG.row_20, sG.w_100, sG.ai_center, sG.jc_center]}>
+                          <TouchableOpacity style={[sG.h_90, sG.w_90, sG.ai_center, sG.jc_center, sG.border_bottom]} onPress={() => handleChangeNovelty(item.id, item.nombre)}>
+                            <Text style={[sG.h7, noveltyIdSelected === item.id ? sG.bold : null, sG.text_black, sG.text_center]}>{item.nombre}</Text>
+                          </TouchableOpacity>
+                        </View>
+                      )}
+                    />
+                    :
+                    <View style={[sG.h_100, sG.w_90, sG.ai_center, sG.jc_center]}>
+                      <Text style={[sG.h7, sG.text_gray_light, sG.text_justify, sG.text_center]}>No hay novedades disponibles</Text>
+                    </View>
+                  }
+                </View>
+                :
+                <View style={[sG.w_85, sG.h_80, sG.ai_center]}>
+                  <TouchableOpacity style={[sG.w_100, sG.h_25, sG.ai_center, sG.jc_center, sG.border_bottom, sG.chrow]} onPress={openCategories}>
+                    <View style={[sG.w_80, sG.h_90, sG.jc_center, sG.ai_center]}>
+                      <Text style={[sG.h7, sG.bold, sG.text_black]}>{categoryNameSelected === '' ? "Seleccione Categoria" : categoryNameSelected}  </Text>
+                    </View>
+                    <View style={[sG.w_100, sG.h_90, sG.ai_end, sG.jc_center, sG.position_zindex]}>
+                      <View style={[sG.w_15, sG.h_90, sG.ai_center, sG.jc_center]}>
+                        <MaterialIcons name="keyboard-arrow-down" style={[sG.size_icon_md, sG.text_black]} />
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={[sG.w_100, sG.h_25, sG.ai_center, sG.jc_center, sG.border_bottom, sG.chrow]} onPress={openSubCategories}>
+                    <View style={[sG.w_80, sG.h_90, sG.jc_center, sG.ai_center]}>
+                      <Text style={[sG.h7, sG.bold, sG.text_black]}>{subCategoryNameSelected === '' ? "Seleccione Sub Categoria" : subCategoryNameSelected} </Text>
+                    </View>
+                    <View style={[sG.w_100, sG.h_90, sG.ai_end, sG.jc_center, sG.position_zindex]}>
+                      <View style={[sG.w_15, sG.h_90, sG.ai_center, sG.jc_center]}>
+                        <MaterialIcons name="keyboard-arrow-down" style={[sG.size_icon_md, sG.text_black]} />
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={[sG.w_100, sG.h_25, sG.ai_center, sG.jc_center, sG.border_bottom, sG.chrow]} onPress={openNovelties}>
+                    <View style={[sG.w_80, sG.h_90, sG.jc_center, sG.ai_center]}>
+                      <Text style={[sG.h7, sG.bold, sG.text_black]}>{noveltyNameSelected === '' ? "Seleccione Novedad" : noveltyNameSelected} </Text>
+                    </View>
+                    <View style={[sG.w_100, sG.h_90, sG.ai_end, sG.jc_center, sG.position_zindex]}>
+                      <View style={[sG.w_15, sG.h_90, sG.ai_center, sG.jc_center]}>
+                        <MaterialIcons name="keyboard-arrow-down" style={[sG.size_icon_md, sG.text_black]} />
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+
+                  <View style={[sG.w_100, sG.h_25, sG.ai_center, sG.jc_end]}>
+                    {categoryIdSelected != '' && subCategoryIdSelected != '' && noveltyIdSelected != '' ?
+                      <TouchableOpacity style={[sG.w_60, sG.h_70, sG.ai_center, sG.jc_center, sG.broundedmax, sG.bg_primary]} onPress={handlePressNoveltyDetails}>
+                        <Text style={[sG.h7, sG.bold, sG.text_white]}>Generar</Text>
+                      </TouchableOpacity>
+                      :
+                      <View style={[sG.w_60, sG.h_70, sG.ai_center, sG.jc_center, sG.broundedmax, sG.bg_gray_light]}>
+                        <Text style={[sG.h7, sG.bold, sG.text_white]}>Generar</Text>
+                      </View>
+                    }
+                  </View>
+                </View>
+          }
+        </View>
+      </BottomSheet >
 
       {
         verifyVersion ?

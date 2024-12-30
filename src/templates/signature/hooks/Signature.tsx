@@ -21,8 +21,7 @@ const Signature = ({ }) => {
 
     const signaturePadChange = (base64DataUrl: any) => {
         let firmaIndex = base64DataUrl.slice(22, base64DataUrl.length)
-        // alert(firmaIndex)
-        setbase64DataUrl(firmaIndex)
+        setbase64DataUrl(firmaIndex);
         setsignatureCapturedEmpty(true)
     };
 
@@ -71,8 +70,6 @@ const Signature = ({ }) => {
                         'firmaBase': base64DataUrl,
                     })
                 }
-                console.log(data);
-                console.log('/apis/servicios/' + fechaService + '/' + idService + '/');
 
                 let response = await asyncSendApis('/apis/servicios/' + fechaService + '/' + idService + '/', data);
                 if (response.status) {

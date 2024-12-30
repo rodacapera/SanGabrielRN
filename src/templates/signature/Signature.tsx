@@ -1,10 +1,9 @@
 import { sG } from '@src/globals/styles/styles';
-import { TouchableOpacity, Text, View, ActivityIndicator, } from 'react-native';
+import { TouchableOpacity, Text, View, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Signature from './hooks/Signature';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-// @ts-ignore
-import { SignatureView } from 'react-native-signature-capture-view';
+import SignatureScreen from 'react-native-signature-canvas';
 
 export const SignatureTemplate = () => {
     const {
@@ -16,24 +15,28 @@ export const SignatureTemplate = () => {
         setsignatureCapturedEmpty
     } = Signature({});
 
+    const handleOK = (signature: string) => {
+        signaturePadChange(signature);
+    };
+
+    const handleEnd = () => {
+        signatureRef.current.readSignature();
+    };
+
     return (
         <SafeAreaView style={[sG.container, sG.bg_gray_light]}>
             <View style={[sG.w_100, sG.h_90, sG.jc_center, sG.ai_center]}>
                 <View style={[sG.w_100, sG.h_35]}>
-                    <SignatureView
-                        style={{
-                            borderWidth: 2,
-                            flex: 1,
-                        }}
+                    <SignatureScreen
                         ref={signatureRef}
-                        // onSave is automatically called whenever signature-pad onEnd is called and saveSignature is called
-                        onSave={(val: any) => {
-                            signaturePadChange(val)
-
-                        }}
-                        onClear={() => {
-                            setsignatureCapturedEmpty(false)
-                        }}
+                        onOK={handleOK}
+                        onEnd={handleEnd}
+                        //onClear={handleClear} 
+                        descriptionText="Firma Cliente"
+                        clearText="Borrar firma"
+                        confirmText="Guardar firma"
+                        backgroundColor="rgba(255,255,255,0)" // Fondo transparente
+                        penColor="black" // Color del lápiz
                     />
                 </View>
                 <View style={[sG.w_100, sG.h_5, sG.ai_center, sG.jc_center, sG.bg_white]}>
@@ -42,7 +45,10 @@ export const SignatureTemplate = () => {
                     </View>
                 </View>
                 <View style={[sG.w_100, sG.h_10, sG.ai_end, sG.jc_center]}>
-                    <TouchableOpacity style={[sG.w_50, sG.h_95, sG.ai_center, sG.jc_center, sG.bg_primary]} onPress={() => { signatureRef?.current?.clearSignature() }}>
+                    <TouchableOpacity
+                        style={[sG.w_50, sG.h_95, sG.ai_center, sG.jc_center, sG.bg_primary]}
+                        onPress={() => { signatureRef?.current?.clearSignature(); }}
+                    >
                         <Text style={[sG.h7, sG.bold, sG.text_center, sG.text_white]}>Borrar firma</Text>
                     </TouchableOpacity>
                 </View>
@@ -69,4 +75,4 @@ export const SignatureTemplate = () => {
             }
         </SafeAreaView>
     );
-}
+};
