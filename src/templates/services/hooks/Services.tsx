@@ -99,6 +99,7 @@ const ServicesList = ({ }) => {
 
     const createNovelty = async () => {
         const itemServiceAux = itemService;
+        console.log('itemServiceAux ',itemServiceAux)
         try {
             let data: ApiData = {
                 method: 'POST',
@@ -113,18 +114,18 @@ const ServicesList = ({ }) => {
             if (response.status) {
                 setLoadingReport(false);
                 setVisibleNovedades(false);
-                /*  if (itemServiceAux) {
-                     const item = {
-                         servicio: itemServiceAux.id,
-                         estado_nombre: ' ',
-                         estado_servicio: itemServiceAux.estadoAssing || '',
-                         pasajero_nombre: `${itemServiceAux?.pasajero?.primer_nombre} ${itemServiceAux?.pasajero?.primer_apellido}`,
-                         origen: itemServiceAux?.origen?.nombre,
-                         destino: itemServiceAux?.destino?.nombre,
-                         id: response.id
-                     };
-                     //navigation.navigate('NoveltyDetails', { item: item, isCloseBySupervisor: false, isNewNovelty: true });
-                 } */
+                if (itemServiceAux) {
+                    const item = {
+                        servicio: itemServiceAux.id,
+                        estado_nombre: ' ',
+                        estado_servicio: itemServiceAux.estadoAssing || '',
+                        pasajero_nombre: `${itemServiceAux?.pasajero?.primer_nombre} ${itemServiceAux?.pasajero?.primer_apellido}`,
+                        origen: itemServiceAux?.origen?.nombre,
+                        destino: itemServiceAux?.destino?.nombre,
+                        id: response.id
+                    };
+                    navigation.navigate('NoveltyDetails', { item: item, isCloseBySupervisor: false, isNewNovelty: true });
+                }
             } else {
                 console.log("Error ====> ", response);
             }
@@ -137,24 +138,7 @@ const ServicesList = ({ }) => {
         setVisible(!visibleNovedades);
     };
 
-    const visibleNovedadesHandler = async (IdService: any, estadoServicio: any, hasNovelty: any, item: any) => {
-       /*  setVisibleNovedades(!visibleNovedades);
-        setVisibleCategories(false);
-        setVisibleSubCategories(false);
-        setVisibleNovelty(false);
-        setCategoryIdSelected('');
-        setCategoryNameSelected('');
-        setSubCategoryNameSelected('');
-        setSubCategoryIdSelected('');
-        setNoveltyNameSelected('');
-        setNoveltyIdSelected('');
-        setServiceIdReport(IdService);
-        setStateService(estadoServicio);
-        setItemService(item);
-        getCategories(); */
-    };
-
-    const closeVisibleNovedades = async (IdService: any, estadoServicio: any, hasNovelty: any) => {
+    const visibleNovedadesHandler = async (IdService: any, estadoServicio: any, item: any) => {
         setVisibleNovedades(!visibleNovedades);
         setVisibleCategories(false);
         setVisibleSubCategories(false);
@@ -167,7 +151,26 @@ const ServicesList = ({ }) => {
         setNoveltyIdSelected('');
         setServiceIdReport(IdService);
         setStateService(estadoServicio);
+        setItemService(item);
+        getCategories(estadoServicio);
+    };
+
+    const closeVisibleNovedades = async () => {
+        setVisibleNovedades(!visibleNovedades);
+        setVisibleCategories(false);
+        setVisibleSubCategories(false);
+        setVisibleNovelty(false);
+        setCategoryIdSelected('');
+        setCategoryNameSelected('');
+        setSubCategoryNameSelected('');
+        setSubCategoryIdSelected('');
+        setNoveltyNameSelected('');
+        setNoveltyIdSelected('');
+        setServiceIdReport('');
+        setStateService(null);
         setItemService(null);
+        setDataSubCategories([]);
+        setDataNovelty([]);
     };
 
     const AppInGoogle = () => {
@@ -263,12 +266,12 @@ const ServicesList = ({ }) => {
     };
 
     // API to get categories
-    const getCategories = async () => {
+    const getCategories = async (estadoServicio: any) => {
         try {
             let data: ApiData = {
                 token: await AsyncStorage.getItem('Token'),
             };
-            let response = await asyncSendApis(`/novelty/apiCategoria/?estadoServicio=${stateService}`, data);
+            let response = await asyncSendApis(`/novelty/apiCategoria/?estadoServicio=${estadoServicio}`, data);
             if (response.status) {
                 setDataCategories(response);
             } else {

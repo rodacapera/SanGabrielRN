@@ -15,7 +15,7 @@ interface ServiceProps {
     item: any;
     handlePressDetails: (id: string, estado: string) => void;
     handlePressChat: (novelty: any, id: string) => void;
-    visibleNovedades: (id: string, estadoServicio: string, hasNovelty: boolean, item: any) => void;
+    visibleNovedades: (id: string, estadoServicio: string, item: any) => void;
 }
 
 export default class ServiceAccepted extends Component<ServiceProps> {
@@ -28,7 +28,7 @@ export default class ServiceAccepted extends Component<ServiceProps> {
                         <TouchableOpacity style={[sG.h_80, sG.w_100, sG.ai_center, sG.jc_center]} onPress={() => this.props.handlePressDetails(this.props.id, this.props.estado === 6 ? '2' : '0')}>
                             <View style={[sG.w_90, sG.ai_center, sG.jc_center, sG.chrow]}>
                                 <View style={[sG.w_20, sG.jc_center]}>
-                                   <Ionicons name="information" style={[sG.size_icon, sG.text_green]} />
+                                    <Ionicons name="information" style={[sG.size_icon, sG.text_green]} />
                                 </View>
                                 {this.props.aceptado ?
                                     <View style={[sG.w_80, sG.jc_end, sG.ai_center, sG.chrow]}>
@@ -76,7 +76,7 @@ export default class ServiceAccepted extends Component<ServiceProps> {
                                 <Text style={[sG.h8, sG.text_white, sG.bold]}>Ver Novedad</Text>
                             </TouchableOpacity>
                             :
-                            <TouchableOpacity style={[sG.h_20, sG.w_100, sG.ai_center, sG.jc_center, sG.bg_green]} onPress={() => this.props.visibleNovedades(this.props.id, this.props.estadoServicio, this.props.hasNovelty === null ? false : true, this.props.item)}>
+                            <TouchableOpacity style={[sG.h_20, sG.w_100, sG.ai_center, sG.jc_center, sG.bg_green]} onPress={() => this.props.visibleNovedades(this.props.id, this.props.estadoServicio, this.props.item)}>
                                 <Text style={[sG.h8, sG.text_white, sG.bold]}>Reportar Novedad</Text>
                             </TouchableOpacity>
                         }
@@ -88,7 +88,7 @@ export default class ServiceAccepted extends Component<ServiceProps> {
                         <TouchableOpacity style={[sG.h_80, sG.w_100, sG.ai_center, sG.jc_center]} onPress={() => this.props.handlePressDetails(this.props.id, this.props.estado === 6 ? '2' : '0')}>
                             <View style={[sG.w_90, sG.ai_center, sG.jc_center, sG.chrow]}>
                                 <View style={[sG.w_20, sG.jc_center]}>
-                                   <Ionicons name="information" style={[sG.size_icon, sG.text_yellow]} />
+                                    <Ionicons name="information" style={[sG.size_icon, sG.text_yellow]} />
                                 </View>
                                 {this.props.aceptado ?
                                     <View style={[sG.w_80, sG.jc_end, sG.ai_center, sG.chrow]}>

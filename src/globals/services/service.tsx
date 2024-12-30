@@ -1,5 +1,5 @@
-import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
-import {ConfigConstants} from '../config/config';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { ConfigConstants } from '../config/config';
 
 // Define la forma de los datos que se reciben en la función
 interface ApiData {
@@ -61,7 +61,9 @@ export const asyncSendApis = async (
       config.data = data.body; // Asigna directamente el cuerpo si no es un formulario
     }
   }
-  
+
+  console.log('config ', config)
+
   // Envía la solicitud utilizando Axios y espera la respuesta
   const response: AxiosResponse = await axios(config);
   const json: ApiResponse = response.data;

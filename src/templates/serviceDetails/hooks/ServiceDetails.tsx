@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { Alert, Linking } from 'react-native';
 import BackgroundGeolocation from 'react-native-background-geolocation';
 import { getDistance } from 'geolib';
+import { ConfigConstants } from '@src/globals/config/config';
 
 const ServicesDetails = ({ }) => {
     const navigation = useNavigation<StackNavigation>();
@@ -91,7 +92,7 @@ const ServicesDetails = ({ }) => {
 
     // Evento para abrir el certificado de cierre
     const handlePressImprimirPDF = () => {
-        //Linking.openURL(`${ConstantClass.webserviceName}/servicios/certificadoCierre/${id}`);
+        Linking.openURL(`${ConfigConstants.webServiceName}/servicios/certificadoCierre/${id}`);
     };
 
     // Evento que abre el modal (estadoServicio === 23)
@@ -118,7 +119,7 @@ const ServicesDetails = ({ }) => {
         const diffDays = hoy.getUTCDate() - fechaServicio.getUTCDate();
 
         if (diffDays < 2) {
-            //navigation.navigate('ReportObsFinished', { id, observacionesOperador });
+            navigation.navigate('ReportObsFinished', { id, observacionesOperador });
         } else {
             Alert.alert(
                 "Servicio fuera del rango",

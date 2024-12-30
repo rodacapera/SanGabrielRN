@@ -13,7 +13,7 @@ interface ServiceReleasedProps {
     hasNovelty: { novedad: boolean }
     handlePressDetails: (id: string, param: string) => void;
     handlePressChat: (hasNovelty: { novedad: boolean;[key: string]: any }, id: string) => void;
-    visibleNovedades: (id: string, estadoServicio: string, hasNovelty: boolean, item: any) => void;
+    visibleNovedades: (id: string, estadoServicio: string, item: any) => void;
 }
 
 export default class ServiceReleased extends Component<ServiceReleasedProps> {
@@ -63,7 +63,10 @@ export default class ServiceReleased extends Component<ServiceReleasedProps> {
                         </View>
                     </View>
                 </TouchableOpacity>
-                {this.props.hasNovelty.novedad ?
+                <TouchableOpacity style={[sG.h_20, sG.w_100, sG.ai_center, sG.jc_center, sG.bg_gray_light]} onPress={() => this.props.visibleNovedades(this.props.id, this.props.estadoServicio, this.props.item)}>
+                    <Text style={[sG.h8, sG.text_white, sG.bold]}>Reportar Novedad</Text>
+                </TouchableOpacity>
+                {/* {this.props.hasNovelty.novedad ?
                     <TouchableOpacity style={[sG.h_20, sG.w_100, sG.ai_center, sG.jc_center, sG.bg_gray_light]} onPress={() => this.props.handlePressChat(this.props.hasNovelty, this.props.id)}>
                         <Text style={[sG.h8, sG.text_white, sG.bold]}>Ver Novedad</Text>
                     </TouchableOpacity>
@@ -72,7 +75,7 @@ export default class ServiceReleased extends Component<ServiceReleasedProps> {
                         <Text style={[sG.h8, sG.text_white, sG.bold]}>Reportar Novedad</Text>
                     </TouchableOpacity>
                     )
-                }
+                } */}
             </View >
         );
     }
